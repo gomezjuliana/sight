@@ -1,1 +1,1 @@
-console.log('hey pal!');
+document.querySelector('.btn').addEventListener('click', () => console.log('hello!'));
