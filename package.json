@@ -1,0 +1,28 @@
+{
+  "name": "sight",
+  "version": "1.0.0",
+  "description": "a multipage responsive web site",
+  "main": "webserver.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "postinstall": "npm run build",
+    "start": "node webserver.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gomezjuliana/sight.git"
+  },
+  "author": "Juliana Gomez (juliana@gomezjuliana.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gomezjuliana/sight/issues"
+  },
+  "homepage": "https://github.com/gomezjuliana/sight#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  },
+  "devDependencies": {
+    "webpack": "^3.0.0"
+  }
+}
