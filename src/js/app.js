@@ -1,3 +1,3 @@
 import '../scss/app.scss';
 
-document.querySelector('.btn').addEventListener('click', () => console.log('hello!'))
+document.querySelector('.btn').addventListener('click', () => console.log('hello!'))

@@ -5,8 +5,9 @@
   "main": "webserver.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
+    "lint:scss": "sass-lint -v",
     "lint:js": "eslint src/js/**",
-    "lint": "npm run lint:js",
+    "lint": "npm run lint:scss ; npm run lint:js",
     "postinstall": "npm run build",
     "start": "node webserver.js",
     "test": "jest"

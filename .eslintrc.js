@@ -15,7 +15,7 @@ module.exports = {
         ],
         "linebreak-style": [
             "error",
-            "unix"
+            "windows"
         ],
         "quotes": [
             "error",
@@ -24,6 +24,9 @@ module.exports = {
         "semi": [
             "error",
             "always"
+        ],
+        "no-console": [
+             "off"
         ]
     }
 };
