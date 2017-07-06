@@ -115,22 +115,93 @@ function askIfLike() {
 
 	let yesInput = document.createElement('input');
 	let noInput = document.createElement('input');
-	form.append(yesInput);
-	form.append(noInput);
-
+	
 	yesInput.type = 'radio';
 	yesInput.name = 'choice';
-	yesInput.id = 'yes';
+	yesInput.class = 'yes';
 	yesInput.setAttribute('checked','');
 
 	noInput.type = 'radio';
 	noInput.name = 'choice';
-	noInput.id = 'no';
+	noInput.class = 'no';
 	
-	yesInput.append('Yes');
-	noInput.append('No');
+	form.appendChild(yesInput);
+	form.append('Yes');
+	form.appendChild(noInput);
+	form.append('No');
 
 	containerDiv.appendChild(form);
+	form.addEventListener('keydown', e => reactToLiked(e));
+}
+
+function reactToLiked(e){
+	containerDiv.removeChild(document.querySelector('audio'));
+	containerDiv.removeChild(document.querySelector('form'));
+	if (e.target.class === 'yes'){
+		questionH.innerHTML = 'You should <a href="https://www.youtube.com/watch?v=Z-_ub09u3wo" target="_blank" class="youtube-link">listen to the live version</a>.';
+		createButton('btn', 'Ok, I will', almostOver);
+	} else {
+	questionH.innerHTML = 'Thanks for giving it a shot';
+	createButton('btn', 'You are welcome.', almostOver);
+	}
+}
+
+function almostOver(){
+	containerDiv.removeChild(document.querySelector('.btn'));
+	questionH.innerHTML = 'Our adventure is almost over!';
+	setTimeout(() => showCanvas(), 2000);
+}
+
+function showCanvas(){
+	questionH.innerHTML = 'Before you go, show me some love by drawing a heart :) Thanks for coming along!';
+	let div = document.createElement('div');
+	div.classList.add('sketch');
+	let canvas = document.createElement('canvas');
+	canvas.classList.add('paint');
+	div.appendChild(canvas);
+	containerDiv.appendChild(div);
+	paintCanvas();
+}
+
+function paintCanvas(){
+	var canvas = document.querySelector('.paint');
+	var ctx = canvas.getContext('2d');
+	var sketch = document.querySelector('.sketch');
+	var sketch_style = getComputedStyle(sketch);
+	canvas.width = parseInt(sketch_style.getPropertyValue('width'));
+	canvas.height = parseInt(sketch_style.getPropertyValue('height'));
+
+	var mouse = {x: 0, y:0};
+	var last_mouse = {x: 0, y:0};
+
+	canvas.addEventListener('mousemove', function(e) {
+		last_mouse.x = mouse.x;
+		last_mouse.y = mouse.y;
+
+		mouse.x = e.pageX - this.offsetLeft;
+		mouse.y = e.pageY - this.offsetTop;
+	}, false);
+
+	ctx.lineWidth = 5;
+	ctx.lineJoin = 'round';
+	ctx.lineCap = 'round';
+	ctx.strokeStyle = 'red';
+
+	canvas.addEventListener('mousedown', e => {
+		canvas.addEventListener('mousemove', onPaint, false);
+	}, false);
+
+	canvas.addEventListener('mouseup', () => {
+		canvas.removeEventListener('mousemove', onPaint, false);
+	}, false);
+
+	var onPaint = function() {
+		ctx.beginPath();
+		ctx.moveTo(last_mouse.x, last_mouse.y);
+		ctx.lineTo(mouse.x, mouse.y);
+		ctx.closePath();
+		ctx.stroke();
+	};
 }
 
 window.onload = printHello();

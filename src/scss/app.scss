@@ -3,6 +3,7 @@
 
 body {
 	background-color: $paper;
+	margin: 50px;
 	p {
 		color: $charcoal;
 		font-family: $alice;
@@ -11,7 +12,10 @@ body {
 	.hide {
 		display: none;
 	}
-	margin: 50px;
+	.sketch {
+		border: 10px solid gray; 
+		height: 500px;
+	}
 }
 
 /*Buttons*/
