@@ -2,16 +2,18 @@
 @import './base/variables';
 
 body {
-	background-color: $black;
+	background-color: $paper;
 	p {
-		color: $white;
+		color: $charcoal;
+		font-family: $alice;
+		/*font-weight: bold;*/
 	}
+	.hide {
+		display: none;
+	}
+	margin: 50px;
 }
 
-.bgImage {
-	background-image: url('../assets/cat.jpg');
-	background-repeat: no-repeat;
-	background-size: contain;
-	height: 500px;
-	width: 100%;
-}
+/*Buttons*/
+/*Intructions*/
+
