@@ -3,19 +3,35 @@
 
 body {
 	background-color: $paper;
-	margin: 50px;
-	p {
-		color: $charcoal;
-		font-family: $alice;
-		/*font-weight: bold;*/
-	}
-	.hide {
-		display: none;
-	}
-	.sketch {
-		border: 10px solid gray; 
-		height: 500px;
-	}
+	text-align: center;
+}
+
+.container {
+	margin-top: 10%;
+}
+
+.container__question,
+.container__new-question {
+	font-family: $playfair;
+	font-size: 28px;
+	letter-spacing: 2px;
+	margin-top: 10%;
+	margin-bottom: 5%;
+}
+
+.btn {
+	font-size: 22px;
+	padding: 2%;
+	border: 3px solid #DCD0C0;
+	color: #C0B283;
+	background-color: #F4F4F4;
+	margin-top: 5%;
+	border-radius: 10px;
+}
+
+.container-sketch {
+	border: 10px solid gray; 
+	height: 500px;
 }
 
 /*Buttons*/

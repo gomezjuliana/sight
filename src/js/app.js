@@ -2,7 +2,7 @@ import '../scss/app.scss';
 import '../assets/glorious.wav'
 
 const containerDiv = document.querySelector('.container');
-const questionH = document.querySelector('.question');
+const questionH = document.querySelector('.container__question');
 
 function createButton(classLabel, node, nextStep) {
 	let button = document.createElement('button');
@@ -13,14 +13,18 @@ function createButton(classLabel, node, nextStep) {
 	button.addEventListener('click', nextStep)
 }
 
+function removeElement(element){
+	containerDiv.removeChild(element);
+}
+
 function printHello() {
 	let greeting = document.createTextNode('Hey.');
 	questionH.appendChild(greeting);
-	createButton('btn.greeting', 'Hey gurl hey', askForAdventure);
+	createButton('btn', 'Hey gurl hey', askForAdventure);
 }
 
 function askForAdventure(e){
-	containerDiv.removeChild(e.target);
+	removeElement(e.target);
 	questionH.innerHTML = 'Do you wanna go on an adventure?'
 
 	createButton('btn', 'Yes.', startAdventure);
@@ -30,7 +34,7 @@ function askForAdventure(e){
 
 function startAdventure(e){
 	document.querySelectorAll('.btn').forEach(function(button){
-		containerDiv.removeChild(button);
+		removeElement(button);
 	});
 	questionH.innerHTML = 'Awesome';
 
@@ -48,7 +52,7 @@ function startAdventure(e){
 
 function checkIfSure(){
 	document.querySelectorAll('.btn').forEach(function(button){
-		containerDiv.removeChild(button);
+		removeElement(button);
 	});
 	questionH.innerHTML = 'A little trip on the internet.'
 	createButton('btn', 'Ok, I\'m down.', startAdventure);
@@ -60,11 +64,11 @@ function sayEarlyGoodbye(){
 }
 
 function watchThis(){
-	containerDiv.removeChild(document.querySelector('p'));
+	removeElement(document.querySelector('p'));
 	questionH.innerHTML = 'Watch this.';
 	let iframe = document.createElement('iframe');
-	iframe.width = 560;
-	iframe.height = 315;
+	iframe.width = '90%';
+	iframe.height = 'auto';
 	iframe.src ="https://www.youtube.com/embed/zDCNJdeM9PE";
 	iframe.setAttribute('frameborder', 0);
 	iframe.setAttribute('allowfullscreen', '');
@@ -74,7 +78,7 @@ function watchThis(){
 
 function askForThoughts(){
 	let newQuestion = document.createElement('h3');
-	newQuestion.classList.add('new-question');
+	newQuestion.classList.add('container__new-question');
 	newQuestion.innerHTML = 'What did you think?';
 	containerDiv.appendChild(newQuestion);
 	let form = document.createElement('form');
@@ -90,10 +94,10 @@ function askForThoughts(){
 
 function listenThis(e){
 	e.preventDefault();
-	containerDiv.removeChild(document.querySelector('iframe'));
-	containerDiv.removeChild(document.querySelector('.btn'));
-	containerDiv.removeChild(document.querySelector('.new-question'))
-	containerDiv.removeChild(document.querySelector('form'));
+	removeElement(document.querySelector('iframe'));
+	removeElement(document.querySelector('.btn'));
+	removeElement(document.querySelector('.container__new-question'))
+	removeElement(document.querySelector('form'));
 	questionH.innerHTML = 'Ah, gotcha. Ok, next, listen to this song';
 	let audio = document.createElement('audio');
 	audio.setAttribute('controls','');
@@ -109,6 +113,8 @@ function listenThis(e){
 function askIfLike() {
 	let newQuestion = document.createElement('h3');
 	newQuestion.innerHTML = 'Did you like it?';
+	newQuestion.classList.add('container__new-question');
+	containerDiv.appendChild(newQuestion);
 
 	let form = document.createElement('form');
 	form.classList.add('form');
@@ -126,17 +132,19 @@ function askIfLike() {
 	noInput.class = 'no';
 	
 	form.appendChild(yesInput);
-	form.append('Yes');
+	form.append('Yeah, it was great!');
 	form.appendChild(noInput);
-	form.append('No');
+	form.append('Not my jam.');
 
 	containerDiv.appendChild(form);
 	form.addEventListener('keydown', e => reactToLiked(e));
 }
 
 function reactToLiked(e){
-	containerDiv.removeChild(document.querySelector('audio'));
-	containerDiv.removeChild(document.querySelector('form'));
+	removeElement(document.querySelector('audio'));
+	removeElement(document.querySelector('form'));
+	removeElement(document.querySelector('.container__new-question'));
+	containerDiv
 	if (e.target.class === 'yes'){
 		questionH.innerHTML = 'You should <a href="https://www.youtube.com/watch?v=Z-_ub09u3wo" target="_blank" class="youtube-link">listen to the live version</a>.';
 		createButton('btn', 'Ok, I will', almostOver);
@@ -155,18 +163,18 @@ function almostOver(){
 function showCanvas(){
 	questionH.innerHTML = 'Before you go, show me some love by drawing a heart :) Thanks for coming along!';
 	let div = document.createElement('div');
-	div.classList.add('sketch');
+	div.classList.add('container-sketch');
 	let canvas = document.createElement('canvas');
-	canvas.classList.add('paint');
+	canvas.classList.add('container-sketch__paint');
 	div.appendChild(canvas);
 	containerDiv.appendChild(div);
 	paintCanvas();
 }
 
 function paintCanvas(){
-	var canvas = document.querySelector('.paint');
+	var canvas = document.querySelector('.container-sketch__paint');
 	var ctx = canvas.getContext('2d');
-	var sketch = document.querySelector('.sketch');
+	var sketch = document.querySelector('.container-sketch');
 	var sketch_style = getComputedStyle(sketch);
 	canvas.width = parseInt(sketch_style.getPropertyValue('width'));
 	canvas.height = parseInt(sketch_style.getPropertyValue('height'));
