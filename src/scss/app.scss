@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-	margin-top: 10%;
+	margin-top: 35px;
 }
 
 .container__question,
@@ -15,25 +15,63 @@ body {
 	font-family: $playfair;
 	font-size: 28px;
 	letter-spacing: 2px;
-	margin-top: 10%;
-	margin-bottom: 5%;
+	margin-top: 35px;
+	margin-bottom: 16px;
+}
+
+.container__youtube-link {
+	color: $palegold;
+	text-decoration: none;
+}
+
+.container__youtube-link:visited {
+	color: $silk;
 }
 
 .btn {
 	font-size: 22px;
 	padding: 2%;
-	border: 3px solid #DCD0C0;
-	color: #C0B283;
-	background-color: #F4F4F4;
-	margin-top: 5%;
+	border: 3px solid $silk;
+	color: $palegold;
+	background-color: $paper;
+	margin-top: 15px;
 	border-radius: 10px;
+	font-family: $alice;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .container-sketch {
 	border: 10px solid gray; 
-	height: 500px;
+	height: 60vh;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
+.form__input-label {
+	margin-left: 2%;
+	margin-right: 2%;
+	font-family: $alice;
+}
+
+.form__text {
+	font-family: $alice;
+	font-size: 18px;
+}
+
+@media (min-width: 600px){
+	.container__youtube-video{
+		height: 300px;
+	}
+}
+
+@media (min-width: 900px){
+	.container__youtube-video{
+		height: 500px;
+	}
+}
 /*Buttons*/
 /*Intructions*/
 

@@ -36,7 +36,7 @@ function startAdventure(e){
 	document.querySelectorAll('.btn').forEach(function(button){
 		removeElement(button);
 	});
-	questionH.innerHTML = 'Awesome';
+	questionH.innerHTML = 'Awesome.';
 
 	let countdown = document.createElement('p');
 	containerDiv.appendChild(countdown);
@@ -68,10 +68,10 @@ function watchThis(){
 	questionH.innerHTML = 'Watch this.';
 	let iframe = document.createElement('iframe');
 	iframe.width = '90%';
-	iframe.height = 'auto';
 	iframe.src ="https://www.youtube.com/embed/zDCNJdeM9PE";
 	iframe.setAttribute('frameborder', 0);
 	iframe.setAttribute('allowfullscreen', '');
+	iframe.classList.add('container__youtube-video');
 	containerDiv.appendChild(iframe);
 	createButton('btn', 'When you\'re done click here.', askForThoughts);
 }
@@ -87,6 +87,7 @@ function askForThoughts(){
 	input.type = 'text';
 	input.name = 'thoughts';
 	input.placeholder = 'I thought it was...';
+	input.classList.add('form__text');
 	form.appendChild(input);
 	containerDiv.appendChild(form);
 	form.addEventListener('submit', e => listenThis(e));
@@ -98,7 +99,7 @@ function listenThis(e){
 	removeElement(document.querySelector('.btn'));
 	removeElement(document.querySelector('.container__new-question'))
 	removeElement(document.querySelector('form'));
-	questionH.innerHTML = 'Ah, gotcha. Ok, next, listen to this song';
+	questionH.innerHTML = 'Ah, gotcha. Ok, next, listen to this song.';
 	let audio = document.createElement('audio');
 	audio.setAttribute('controls','');
 	audio.classList.add('audio-file');
@@ -124,17 +125,27 @@ function askIfLike() {
 	
 	yesInput.type = 'radio';
 	yesInput.name = 'choice';
-	yesInput.class = 'yes';
+	yesInput.id = 'yes';
 	yesInput.setAttribute('checked','');
 
 	noInput.type = 'radio';
 	noInput.name = 'choice';
-	noInput.class = 'no';
+	noInput.id = 'no';
+
+	let yesLabel = document.createElement('label');
+	let noLabel = document.createElement('label');
+	yesLabel.setAttribute('for','yes');
+	yesLabel.append('Yeah, it was great!');
+	yesLabel.classList.add('form__input-label');
+
+	noLabel.setAttribute('for','no');
+	noLabel.append('Not my jam.');
+	noLabel.classList.add('form__input-label');
 	
 	form.appendChild(yesInput);
-	form.append('Yeah, it was great!');
+	form.append(yesLabel);
 	form.appendChild(noInput);
-	form.append('Not my jam.');
+	form.append(noLabel);
 
 	containerDiv.appendChild(form);
 	form.addEventListener('keydown', e => reactToLiked(e));
@@ -145,8 +156,8 @@ function reactToLiked(e){
 	removeElement(document.querySelector('form'));
 	removeElement(document.querySelector('.container__new-question'));
 	containerDiv
-	if (e.target.class === 'yes'){
-		questionH.innerHTML = 'You should <a href="https://www.youtube.com/watch?v=Z-_ub09u3wo" target="_blank" class="youtube-link">listen to the live version</a>.';
+	if (e.target.id === 'yes'){
+		questionH.innerHTML = 'You should <a href="https://www.youtube.com/watch?v=Z-_ub09u3wo" target="_blank" class="container__youtube-link">listen to the live version</a>.';
 		createButton('btn', 'Ok, I will', almostOver);
 	} else {
 	questionH.innerHTML = 'Thanks for giving it a shot';
