@@ -2,16 +2,73 @@
 @import './base/variables';
 
 body {
-	background-color: $blck;
-	p {
-		color: $whit;
+	background-color: $paper;
+	text-align: center;
+}
+
+.container {
+	margin-top: 35px;
+}
+
+.container__question,
+.container__new-question {
+	font-family: $playfair;
+	font-size: 28px;
+	letter-spacing: 2px;
+	margin-bottom: 16px;
+	margin-top: 35px;	
+}
+
+.container__youtube-link {
+	color: $palegold;
+	text-decoration: none;
+}
+
+.container__youtube-link:visited {
+	color: $silk;
+}
+
+.btn {
+	background-color: $paper;
+	border: 3px solid $silk;
+	border-radius: 10px;
+	color: $palegold;
+	display: block;
+	font-family: $alice;
+	font-size: 22px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15px;
+	padding: 2%;
+}
+
+.container-sketch {
+	border: 10px solid gray; 
+	height: 60vh;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
+.form__input-label {
+	font-family: $alice;
+	margin-left: 2%;
+	margin-right: 2%;	
+}
+
+.form__text {
+	font-family: $alice;
+	font-size: 18px;
+}
+
+@media (min-width: 600px){
+	.container__youtube-video{
+		height: 300px;
 	}
 }
 
-.bgImage {
-	background-image: url('../assets/cat.jpg');
-	background-repeat: no-repeat;
-	background-size: contain;
-	height: 500px;
-	width: 100%;
+@media (min-width: 900px){
+	.container__youtube-video{
+		height: 500px;
+	}
 }
