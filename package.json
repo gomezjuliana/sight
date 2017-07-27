@@ -2,13 +2,15 @@
   "name": "sight",
   "version": "1.0.0",
   "description": "a multipage responsive web site",
+  "engines": {
+    "node": "8.2.1",
+    "npm": "5.3.0",
   "main": "webserver.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "lint:scss": "sass-lint -v",
     "lint:js": "eslint src/js/** --fix",
     "lint": "npm run lint:scss && npm run lint:js",
-    "postinstall": "npm run build",
     "start": "node webserver.js",
     "test": "jest"
   },
