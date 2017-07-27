@@ -179,7 +179,7 @@ function showCanvas(){
 }
 
 function paintCanvas(){
-	window.addEventListener('resize', paintCanvas)
+	window.addEventListener('resize', paintCanvas);
 	const canvas = document.querySelector('.container-sketch__paint');
 	const ctx = canvas.getContext('2d');
 	const sketch = document.querySelector('.container-sketch');
